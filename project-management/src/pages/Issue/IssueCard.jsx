@@ -54,7 +54,7 @@ const IssueCard = ({item}) => {
       </CardHeader>
       <CardContent className="py-0">
         <div className="flex items-center justify-between">
-          <p>FBP - {1}</p>
+          <p>{()=>navigate(`/project/${id}/issue/${item.id}`)}{item.description}</p>
           
             <DropdownMenu className="w-[30rem] border border-red-400">
               <DropdownMenuTrigger>
