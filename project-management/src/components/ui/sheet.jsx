@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import * as React from "react"
 import * as SheetPrimitive from "@radix-ui/react-dialog"
 import { Cross2Icon } from "@radix-ui/react-icons"
@@ -16,7 +17,7 @@ const SheetPortal = SheetPrimitive.Portal
 const SheetOverlay = React.forwardRef(({ className, ...props }, ref) => (
   <SheetPrimitive.Overlay
     className={cn(
-      "tailwind.config.jsfixed tailwind.config.jsinset-0 tailwind.config.jsz-50 tailwind.config.jsbg-black/80 tailwind.config.js data-[state=open]:tailwind.config.jsanimate-in data-[state=closed]:tailwind.config.jsanimate-out data-[state=closed]:tailwind.config.jsfade-out-0 data-[state=open]:tailwind.config.jsfade-in-0",
+      "fixed inset-0 z-50 bg-black/80  data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
       className
     )}
     {...props}
@@ -25,16 +26,16 @@ const SheetOverlay = React.forwardRef(({ className, ...props }, ref) => (
 SheetOverlay.displayName = SheetPrimitive.Overlay.displayName
 
 const sheetVariants = cva(
-  "tailwind.config.jsfixed tailwind.config.jsz-50 tailwind.config.jsgap-4 tailwind.config.jsbg-background tailwind.config.jsp-6 tailwind.config.jsshadow-lg tailwind.config.jstransition tailwind.config.jsease-in-out data-[state=open]:tailwind.config.jsanimate-in data-[state=closed]:tailwind.config.jsanimate-out data-[state=closed]:tailwind.config.jsduration-300 data-[state=open]:tailwind.config.jsduration-500",
+  "fixed z-50 gap-4 bg-background p-6 text-pink-500 font-bold text-xl shadow-lg transition ease-in-out data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:duration-300 data-[state=open]:duration-500",
   {
     variants: {
       side: {
-        top: "tailwind.config.jsinset-x-0 tailwind.config.jstop-0 tailwind.config.jsborder-b data-[state=closed]:tailwind.config.jsslide-out-to-top data-[state=open]:tailwind.config.jsslide-in-from-top",
+        top: "inset-x-0 top-0 border-b data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top",
         bottom:
-          "tailwind.config.jsinset-x-0 tailwind.config.jsbottom-0 tailwind.config.jsborder-t data-[state=closed]:tailwind.config.jsslide-out-to-bottom data-[state=open]:tailwind.config.jsslide-in-from-bottom",
-        left: "tailwind.config.jsinset-y-0 tailwind.config.jsleft-0 tailwind.config.jsh-full tailwind.config.jsw-3/4 tailwind.config.jsborder-r data-[state=closed]:tailwind.config.jsslide-out-to-left data-[state=open]:tailwind.config.jsslide-in-from-left sm:tailwind.config.jsmax-w-sm",
+          "inset-x-0 bottom-0 border-t data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom",
+        left: "inset-y-0 left-0 h-full w-3/4 border-r data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left sm:max-w-sm",
         right:
-          "tailwind.config.jsinset-y-0 tailwind.config.jsright-0 tailwind.config.jsh-full tailwind.config.jsw-3/4 tailwind.config.jsborder-l data-[state=closed]:tailwind.config.jsslide-out-to-right data-[state=open]:tailwind.config.jsslide-in-from-right sm:tailwind.config.jsmax-w-sm",
+          "inset-y-0 right-0 h-full w-3/4 border-l data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right sm:max-w-sm",
       },
     },
     defaultVariants: {
@@ -49,9 +50,9 @@ const SheetContent = React.forwardRef(({ side = "right", className, children, ..
     <SheetPrimitive.Content ref={ref} className={cn(sheetVariants({ side }), className)} {...props}>
       {children}
       <SheetPrimitive.Close
-        className="tailwind.config.jsabsolute tailwind.config.jsright-4 tailwind.config.jstop-4 tailwind.config.jsrounded-sm tailwind.config.jsopacity-70 tailwind.config.jsring-offset-background tailwind.config.jstransition-opacity hover:tailwind.config.jsopacity-100 focus:tailwind.config.jsoutline-none focus:tailwind.config.jsring-2 focus:tailwind.config.jsring-ring focus:tailwind.config.jsring-offset-2 disabled:tailwind.config.jspointer-events-none data-[state=open]:tailwind.config.jsbg-secondary">
-        <Cross2Icon className="tailwind.config.jsh-4 tailwind.config.jsw-4" />
-        <span className="tailwind.config.jssr-only">Close</span>
+        className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary">
+        <Cross2Icon className="h-4 w-4" />
+        <span className="sr-only">Close</span>
       </SheetPrimitive.Close>
     </SheetPrimitive.Content>
   </SheetPortal>
@@ -63,10 +64,7 @@ const SheetHeader = ({
   ...props
 }) => (
   <div
-    className={cn(
-      "tailwind.config.jsflex tailwind.config.jsflex-col tailwind.config.jsspace-y-2 tailwind.config.jstext-center sm:tailwind.config.jstext-left",
-      className
-    )}
+    className={cn("flex flex-col space-y-2 text-center sm:text-left", className)}
     {...props} />
 )
 SheetHeader.displayName = "SheetHeader"
@@ -76,10 +74,7 @@ const SheetFooter = ({
   ...props
 }) => (
   <div
-    className={cn(
-      "tailwind.config.jsflex tailwind.config.jsflex-col-reverse sm:tailwind.config.jsflex-row sm:tailwind.config.jsjustify-end sm:tailwind.config.jsspace-x-2",
-      className
-    )}
+    className={cn("flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2", className)}
     {...props} />
 )
 SheetFooter.displayName = "SheetFooter"
@@ -87,10 +82,7 @@ SheetFooter.displayName = "SheetFooter"
 const SheetTitle = React.forwardRef(({ className, ...props }, ref) => (
   <SheetPrimitive.Title
     ref={ref}
-    className={cn(
-      "tailwind.config.jstext-lg tailwind.config.jsfont-semibold tailwind.config.jstext-foreground",
-      className
-    )}
+    className={cn("text-lg font-semibold text-foreground", className)}
     {...props} />
 ))
 SheetTitle.displayName = SheetPrimitive.Title.displayName
@@ -98,10 +90,7 @@ SheetTitle.displayName = SheetPrimitive.Title.displayName
 const SheetDescription = React.forwardRef(({ className, ...props }, ref) => (
   <SheetPrimitive.Description
     ref={ref}
-    className={cn(
-      "tailwind.config.jstext-sm tailwind.config.jstext-muted-foreground",
-      className
-    )}
+    className={cn("text-sm text-muted-foreground", className)}
     {...props} />
 ))
 SheetDescription.displayName = SheetPrimitive.Description.displayName

@@ -4,17 +4,17 @@ import { cva } from "class-variance-authority";
 import { cn } from "@/lib/utils"
 
 const badgeVariants = cva(
-  "tailwind.config.jsinline-flex tailwind.config.jsitems-center tailwind.config.jsrounded-md tailwind.config.jsborder tailwind.config.jspx-2.5 tailwind.config.jspy-0.5 tailwind.config.jstext-xs tailwind.config.jsfont-semibold tailwind.config.jstransition-colors focus:tailwind.config.jsoutline-none focus:tailwind.config.jsring-2 focus:tailwind.config.jsring-ring focus:tailwind.config.jsring-offset-2",
+  "inline-flex items-center rounded-full border px-2.5 py-0.5 pb-1 text-xs font-semibold transition-colors focus:outline-none ",
   {
     variants: {
       variant: {
         default:
-          "tailwind.config.jsborder-transparent tailwind.config.jsbg-primary tailwind.config.jstext-primary-foreground tailwind.config.jsshadow hover:tailwind.config.jsbg-primary/80",
+          "border-transparent bg-primary text-primary-foreground shadow hover:bg-primary/80",
         secondary:
-          "tailwind.config.jsborder-transparent tailwind.config.jsbg-secondary tailwind.config.jstext-secondary-foreground hover:tailwind.config.jsbg-secondary/80",
+          "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80",
         destructive:
-          "tailwind.config.jsborder-transparent tailwind.config.jsbg-destructive tailwind.config.jstext-destructive-foreground tailwind.config.jsshadow hover:tailwind.config.jsbg-destructive/80",
-        outline: "tailwind.config.jstext-foreground",
+          "border-transparent bg-destructive text-destructive-foreground shadow hover:bg-destructive/80",
+        outline: "text-foreground",
       },
     },
     defaultVariants: {

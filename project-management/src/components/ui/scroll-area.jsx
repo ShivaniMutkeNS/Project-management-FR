@@ -6,10 +6,9 @@ import { cn } from "@/lib/utils"
 const ScrollArea = React.forwardRef(({ className, children, ...props }, ref) => (
   <ScrollAreaPrimitive.Root
     ref={ref}
-    className={cn("tailwind.config.jsrelative tailwind.config.jsoverflow-hidden", className)}
+    className={cn("relative overflow-hidden", className)}
     {...props}>
-    <ScrollAreaPrimitive.Viewport
-      className="tailwind.config.jsh-full tailwind.config.jsw-full tailwind.config.jsrounded-[inherit]">
+    <ScrollAreaPrimitive.Viewport className="h-full w-full rounded-[inherit]">
       {children}
     </ScrollAreaPrimitive.Viewport>
     <ScrollBar />
@@ -23,16 +22,15 @@ const ScrollBar = React.forwardRef(({ className, orientation = "vertical", ...pr
     ref={ref}
     orientation={orientation}
     className={cn(
-      "tailwind.config.jsflex tailwind.config.jstouch-none tailwind.config.jsselect-none tailwind.config.jstransition-colors",
+      "flex touch-none select-none transition-colors",
       orientation === "vertical" &&
-        "tailwind.config.jsh-full tailwind.config.jsw-2.5 tailwind.config.jsborder-l tailwind.config.jsborder-l-transparent tailwind.config.jsp-[1px]",
+        "h-full w-2.5 border-l border-l-transparent p-[1px]",
       orientation === "horizontal" &&
-        "tailwind.config.jsh-2.5 tailwind.config.jsflex-col tailwind.config.jsborder-t tailwind.config.jsborder-t-transparent tailwind.config.jsp-[1px]",
+        "h-2.5 flex-col border-t border-t-transparent p-[1px]",
       className
     )}
     {...props}>
-    <ScrollAreaPrimitive.ScrollAreaThumb
-      className="tailwind.config.jsrelative tailwind.config.jsflex-1 tailwind.config.jsrounded-full tailwind.config.jsbg-border" />
+    <ScrollAreaPrimitive.ScrollAreaThumb className="relative flex-1 rounded-full bg-border" />
   </ScrollAreaPrimitive.ScrollAreaScrollbar>
 ))
 ScrollBar.displayName = ScrollAreaPrimitive.ScrollAreaScrollbar.displayName

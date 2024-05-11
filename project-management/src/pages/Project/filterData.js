@@ -1,12 +1,3 @@
 export const tags=[
-    "all",
-    "react",
-    "nextjs",
-    "spring boot",
-    "mysql",
-    "mongodb",
-    "angular",
-    "python",
-    "flask",
-    "django"
-  ]
+    "JAVA","REACT","ALL"
+  ]//TODO:ADD more

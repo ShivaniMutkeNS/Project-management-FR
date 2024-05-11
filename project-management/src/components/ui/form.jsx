@@ -51,10 +51,7 @@ const FormItem = React.forwardRef(({ className, ...props }, ref) => {
 
   return (
     (<FormItemContext.Provider value={{ id }}>
-      <div
-        ref={ref}
-        className={cn("tailwind.config.jsspace-y-2", className)}
-        {...props} />
+      <div ref={ref} className={cn("space-y-2", className)} {...props} />
     </FormItemContext.Provider>)
   );
 })
@@ -66,7 +63,7 @@ const FormLabel = React.forwardRef(({ className, ...props }, ref) => {
   return (
     (<Label
       ref={ref}
-      className={cn(error && "tailwind.config.jstext-destructive", className)}
+      className={cn(error && "text-destructive", className)}
       htmlFor={formItemId}
       {...props} />)
   );
@@ -98,10 +95,7 @@ const FormDescription = React.forwardRef(({ className, ...props }, ref) => {
     (<p
       ref={ref}
       id={formDescriptionId}
-      className={cn(
-        "tailwind.config.jstext-[0.8rem] tailwind.config.jstext-muted-foreground",
-        className
-      )}
+      className={cn("text-[0.8rem] text-muted-foreground", className)}
       {...props} />)
   );
 })
@@ -119,10 +113,7 @@ const FormMessage = React.forwardRef(({ className, children, ...props }, ref) =>
     (<p
       ref={ref}
       id={formMessageId}
-      className={cn(
-        "tailwind.config.jstext-[0.8rem] tailwind.config.jsfont-medium tailwind.config.jstext-destructive",
-        className
-      )}
+      className={cn("text-[0.8rem] font-medium text-destructive", className)}
       {...props}>
       {body}
     </p>)

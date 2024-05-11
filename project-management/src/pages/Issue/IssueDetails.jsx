@@ -83,9 +83,9 @@ const IssueDetails = () => {
               <SelectValue placeholder={"To Do"} />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="pending">To Do</SelectItem>
-              <SelectItem value="in_progress">In Progress</SelectItem>
-              <SelectItem value="done">Done</SelectItem>
+              <SelectItem value="PENDING">To Do</SelectItem>
+              <SelectItem value="IN_PROGRESS">In Progress</SelectItem>
+              <SelectItem value="DEPLOYED">Done</SelectItem>
             </SelectContent>
           </Select>
 

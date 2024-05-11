@@ -34,7 +34,7 @@ export const searchProjects = (keyword) => {
   return async (dispatch) => {
     dispatch({ type: actionTypes.SEARCH_PROJECT_REQUEST });
     try {
-      const response = await api.get(`/api/projects/search?keyword=${keyword}`);
+      const response = await api.get(`/api/projects/search-by-name?keyword=${keyword}`);
       console.log("search Projects ", response.data);
       dispatch({
         type: actionTypes.SEARCH_PROJECT_SUCCESS,

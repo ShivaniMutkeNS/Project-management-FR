@@ -6,10 +6,7 @@ import { cn } from "@/lib/utils"
 const Avatar = React.forwardRef(({ className, ...props }, ref) => (
   <AvatarPrimitive.Root
     ref={ref}
-    className={cn(
-      "tailwind.config.jsrelative tailwind.config.jsflex tailwind.config.jsh-10 tailwind.config.jsw-10 tailwind.config.jsshrink-0 tailwind.config.jsoverflow-hidden tailwind.config.jsrounded-full",
-      className
-    )}
+    className={cn("relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full", className)}
     {...props} />
 ))
 Avatar.displayName = AvatarPrimitive.Root.displayName
@@ -17,10 +14,7 @@ Avatar.displayName = AvatarPrimitive.Root.displayName
 const AvatarImage = React.forwardRef(({ className, ...props }, ref) => (
   <AvatarPrimitive.Image
     ref={ref}
-    className={cn(
-      "tailwind.config.jsaspect-square tailwind.config.jsh-full tailwind.config.jsw-full",
-      className
-    )}
+    className={cn("aspect-square h-full w-full", className)}
     {...props} />
 ))
 AvatarImage.displayName = AvatarPrimitive.Image.displayName
@@ -29,7 +23,7 @@ const AvatarFallback = React.forwardRef(({ className, ...props }, ref) => (
   <AvatarPrimitive.Fallback
     ref={ref}
     className={cn(
-      "tailwind.config.jsflex tailwind.config.jsh-full tailwind.config.jsw-full tailwind.config.jsitems-center tailwind.config.jsjustify-center tailwind.config.jsrounded-full tailwind.config.jsbg-muted",
+      "flex h-full w-full items-center justify-center rounded-full bg-muted",
       className
     )}
     {...props} />

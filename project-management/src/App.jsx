@@ -15,40 +15,40 @@ import UpgradeSuccess from "./pages/subscription/UpgradeSuccess";
 import { getUserSubscription } from "./redux/Subscription/Action";
 
 function App() {
-    const dispatch = useDispatch();
-    const { auth } = useSelector((store) => store);
-    useEffect(() => {
-        dispatch(getUser(auth.jwt || localStorage.getItem("jwt")));
-        dispatch(getUserSubscription(auth.jwt || localStorage.getItem("jwt")))
-    }, [auth.jwt]);
+  const dispatch = useDispatch();
+  const { auth } = useSelector((store) => store);
+  useEffect(() => {
+    dispatch(getUser(auth.jwt || localStorage.getItem("jwt")));
+    dispatch(getUserSubscription(auth.jwt || localStorage.getItem("jwt")))
+  }, [auth.jwt]);
 
-    return (
+  return (
+    <>
+      
+      {auth.loading?<Loader/> : auth.user ? (
         <>
-
-            {auth.loading?<Loader/> : auth.user ? (
-                <>
-                    <Navbar />
-                    <Routes>
-                        <Route path="/" element={<Home />}></Route>
-                        <Route path="/project/:id" element={<ProjectDetails />}></Route>
-                        <Route path="/project/update/:id" element={<UpdateProjectForm />}></Route>
-                        <Route
-                            path="/project/:projectId/issue/:issueId"
-                            element={<IssueDetails />}
-                        ></Route>
-                        <Route
-                            path="/accept_invitation"
-                            element={<AcceptInvitation />}
-                        ></Route>
-                        <Route path="/upgrade_plan" element={<Subscription />}></Route>
-                        <Route path="/upgrade_plan/success" element={<UpgradeSuccess />}></Route>
-                    </Routes>
-                </>
-            ) : (
-                <Auth />
-            )}
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />}></Route>
+            <Route path="/project/:id" element={<ProjectDetails />}></Route>
+            <Route path="/project/update/:id" element={<UpdateProjectForm />}></Route>
+            <Route
+              path="/project/:projectId/issue/:issueId"
+              element={<IssueDetails />}
+            ></Route>
+             <Route
+              path="/accept_invitation"
+              element={<AcceptInvitation />}
+            ></Route>
+            <Route path="/upgrade_plan" element={<Subscription />}></Route>
+            <Route path="/upgrade_plan/success" element={<UpgradeSuccess />}></Route>
+          </Routes>
         </>
-    );
+      ) : (
+        <Auth />
+      )}
+    </>
+  );
 }
 
 export default App;

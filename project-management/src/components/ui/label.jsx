@@ -5,7 +5,7 @@ import { cva } from "class-variance-authority";
 import { cn } from "@/lib/utils"
 
 const labelVariants = cva(
-  "tailwind.config.jstext-sm tailwind.config.jsfont-medium tailwind.config.jsleading-none peer-disabled:tailwind.config.jscursor-not-allowed peer-disabled:tailwind.config.jsopacity-70"
+  "text-sm font-medium leading-none text-pink-500 font-bold text-xl peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
 )
 
 const Label = React.forwardRef(({ className, ...props }, ref) => (

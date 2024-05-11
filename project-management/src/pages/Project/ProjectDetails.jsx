@@ -49,33 +49,41 @@ const ProjectDetails = () => {
                   <div className="flex">
                     <p className="w-36">Members : </p>
                     <div className="flex items-center gap-2">
-                      {project.projectDetails?.team.map((item) => (
-                        <Avatar className={`cursor-pointer`} key={item}>
-                          <AvatarFallback>{item.fullName[0]?.toUpperCase()}</AvatarFallback>
-                        </Avatar>
-                      ))}
+                      {project.projectDetails?.teamMembers?.length > 0 && (
+                          <>
+                            {project.projectDetails.teamMembers.map((item) => (
+                                <Avatar key={item.id} className={`cursor-pointer`}>
+                                  {/* Access user properties through item.user */}
+                                  <AvatarFallback>{item.user.fullName[0]?.toUpperCase()}</AvatarFallback>
+                                </Avatar>
+                            ))}
+                          </>
+                      )}
+                      {project.projectDetails?.teamMembers?.length === 0 && (
+                          <p>No team members found.</p>
+                      )}
                     </div>
 
-                   {auth.user?.id===project.projectDetails?.owner.id && <Dialog>
+                    {auth.user?.id === project.projectDetails?.owner.id && <Dialog>
                       <DialogTrigger>
-                      <DialogClose>
-                        <Button
-                          size="sm"
-                          variant="outline"
-                          className="ml-2"
-                          onClick={handleProjectInvitation}
-                        >
-                          {" "}
-                          <span className="pr-1">invite</span>
-                          <PlusIcon className="w-3 h-3" />
-                        </Button>
-                      </DialogClose>
-                        
+                        <DialogClose>
+                          <Button
+                              size="sm"
+                              variant="outline"
+                              className="ml-2"
+                              onClick={handleProjectInvitation}
+                          >
+                            {" "}
+                            <span className="pr-1">invite</span>
+                            <PlusIcon className="w-3 h-3"/>
+                          </Button>
+                        </DialogClose>
+
                       </DialogTrigger>
                       <DialogContent>
                         <DialogHeader>
                           <DialogTitle>Invite User</DialogTitle>
-                         
+
                         </DialogHeader>
                         <InviteUserForm projectId={id}/>
                       </DialogContent>
@@ -98,11 +106,11 @@ const ProjectDetails = () => {
                 <section>
                   <p className="py-5 border-b text-lg tracking-wider">Tasks</p>
                   <div className="lg:flex md:flex gap-3 justify-between py-5">
-                    <IssueList status="pending" title={"Todo List"} />
+                    <IssueList status="PENDING" title={"Todo List"} />
 
-                    <IssueList status="in_progress" title={"In Progress"} />
+                    <IssueList status="IN_PROGRESS" title={"In Progress"} />
 
-                    <IssueList status="done" title={"Done"} />
+                    <IssueList status="DEPLOYED" title={"Done"} />
                   </div>
                 </section>
               </div>

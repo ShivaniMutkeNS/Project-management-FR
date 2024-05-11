@@ -31,8 +31,8 @@ const FilterSheet = () => {
     <div>
         <SheetClose> 
         <div className="p-5 sticky top-10">
-            <div className="flex justify-between lg:w-[20rem]">
-              <p className="text-xl tracking-wider">filters</p>
+            <div className="flex justify-between lg:w-[20rem] text-pink-500 font-bold text-xl">
+              <p className="text-pink-500 font-bold text-xl tracking-wider">filters</p>
               <Button variant="ghost" size="icon">
                 <MixerHorizontalIcon />
               </Button>
@@ -41,7 +41,7 @@ const FilterSheet = () => {
             <CardContent className="mt-5 ">
               <ScrollArea className="space-y-7 h-[85vh]">
                 <div>
-                  <h1 className="pb-3 text-gray-400 border-b">Category</h1>
+                  <h1 className="pb-3 text-gray-400 border-b text-pink-500 font-bold text-xl">Category</h1>
                   <div className="pt-5">
                     <RadioGroup onValueChange={(value)=>handleFilterChange("category",value)} className="space-y-3" defaultValue={category || "all"}>
                       <div className="flex items-center space-x-2">

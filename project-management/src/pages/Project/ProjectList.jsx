@@ -174,8 +174,8 @@ const ProjectList = () => {
                   ))}
             </div>
             {project.projects.length > 0 ? (
-              <div>
-                {/* <Pagination>
+                <div>
+                  {/* <Pagination>
                 <PaginationContent>
                   <PaginationItem>
                     <PaginationPrevious href="#" />
@@ -196,11 +196,13 @@ const ProjectList = () => {
                   </PaginationItem>
                 </PaginationContent>
               </Pagination> */}
-              </div>
+
+                </div>
             ) : (
-              <div className="flex items-center justify-center h-[80vh]">
-                <h1>No projects...</h1>
-              </div>
+                <div
+                    className="flex items-center justify-center grid place-items-center py-4 px-5 shadow">
+                  <h1 className="text-pink-500 font-bold text-3xl">No projects...</h1>
+                </div>
             )}
           </div>
         </section>
