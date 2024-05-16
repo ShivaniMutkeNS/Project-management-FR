@@ -1,5 +1,4 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
+
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { assignedUserToIssue } from "@/redux/Issue/Issue.action";
 import { Fragment } from "react";
@@ -28,22 +27,23 @@ const UserList = ({ issueDetails }) => {
       <div className="border rounded-md">
         <p className="py-2 px-3">{issueDetails.assignee?.fullName || "Unassigne"}</p>
       </div>
-      {project.projectDetails?.team.map((item) => (
+      {project.projectDetails?.teamMembers.map((item) => (
         <div
-          onClick={()=>handleIssueAssigne(item.id)}
-          key={item}
+          onClick={()=>handleIssueAssigne(item.user.id)}
+          key={item.user.id}
           className="py-2 group hover:bg-slate-800 cursor-pointer flex items-center space-x-4 rounded-md border px-4"
         >
           <Avatar className="">
-            <AvatarFallback className="group-hover:bg-gray-400">
-              {item.fullName[0]}
-            </AvatarFallback>
+            <Avatar key={item.user} className={`cursor-pointer`}>
+              {/* Access user properties through item.user */}
+              <AvatarFallback>{item.user.fullName[0]?.toUpperCase()}</AvatarFallback>
+            </Avatar>
           </Avatar>
 
           <div className=" space-y-1">
-            <p className="text-sm font-medium leading-none">{item.fullName}</p>
+            <p className="text-sm font-medium leading-none">{item.user.fullName}</p>
             <p className="text-xs text-muted-foreground">
-              @{item.fullName?.toLowerCase().split(" ").join("_")}
+              @{item.user.fullName?.toLowerCase().split(" ").join("_")}
             </p>
           </div>
         </div>
@@ -52,7 +52,7 @@ const UserList = ({ issueDetails }) => {
     <div className="p-1">
       <Skeleton className="border rounded-md h-[2rem]">
       </Skeleton>
-      {project.projectDetails?.team.map((item) => (
+      {project.projectDetails?.teamMembers.map((item) => (
         <Skeleton
           key={item}
           className="w-full h-[2rem]"

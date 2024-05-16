@@ -40,7 +40,7 @@ const CreateProjectForm = () => {
       name: "",
       description: "",
       category: "fullstack",
-      tags: ["javascript", "react"],
+      tags: ["JAVA", "REACT"],
     },
   });
   const handleTagsChange = (newValue) => {
