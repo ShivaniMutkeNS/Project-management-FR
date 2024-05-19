@@ -9,7 +9,7 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: #25252b;
+    background: wheat;
 }
 @property --a{
     syntax: '<angle>';
@@ -20,7 +20,7 @@
     position: relative;
     
     
-    background: repeating-conic-gradient(from var(--a), #ff2770 0%, #ff2770 5%, transparent 5%, transparent 40%, #ff2770 50%);
+    background: repeating-conic-gradient(from var(--a), cornflowerblue 0%, blueviolet 5%, transparent 5%, transparent 40%, #ff2770 50%);
     filter: drop-shadow(0 15px 50px #000);
     border-radius: 20px;
     animation: rotating 4s linear infinite;
@@ -44,8 +44,8 @@
     position: absolue;
     width: 100%;
     height: 100%;
-    background: repeating-conic-gradient(from var(--a), #45f3ff 0%, #45f3ff 5%, transparent 5%, transparent 40%, #45f3ff 50%);
-    filter: drop-shadow(0 15px 50px #000);
+    background: repeating-conic-gradient(from var(--a), whitesmoke 0%, yellow 5%, transparent 5%, transparent 40%, yellowgreen 50%);
+    filter: drop-shadow(0 15px 50px #45f3ff);
     border-radius: 20px;
     animation: rotating 4s linear infinite;
     animation-delay: -1s;
@@ -54,9 +54,9 @@
     content:"";
     position: absolute;
     inset: 4px;
-    background: #2d2d39;
+    background: peru;
     border-radius: 15px;
-    border: 5px solid #25252b;
+    border: 5px solid ghostwhite;
 }
 .login{
     position: absolute;
@@ -65,9 +65,9 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    border-radius: 10px;
-    background: rgb(0,0,0,0.2);
+    border-radius: 40px;
+    background: yellowgreen;
     z-index: 1000;
-    box-shadow: inset 0 10px 20px rgb(0,0,0,0.5);
+    box-shadow: inset 0 10px 20px wheat;
     border-bottom: 2px solid rgb(255,255,255,0.5);
 }  

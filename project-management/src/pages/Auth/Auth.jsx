@@ -11,10 +11,10 @@ const Auth = () => {
     <div className="loginContainer">
       <div className="box h-[30rem] w-[25rem] ">
         <div className="minContainer login ">
-          <div className="loginBox w-full px-10 space-y-5">
+          <div className="loginBox w-full px-10 space-y-5  font-xl font-bold text-black-900">
             {active ? <SignupForm /> : <LoginForm />}
 
-            <div className="flex items-center justify-center">
+            <div className="flex items-center justify-center  font-xl font-bold text-black">
               <span>already have account ? </span>
               <Button onClick={() => setActive(!active)} variant="ghost">
                 {active ? "signin" : "signup"}
