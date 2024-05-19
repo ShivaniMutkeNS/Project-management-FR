@@ -66,18 +66,22 @@ export function CreateIssueForm({ status }) {
             </FormItem>
           )}
         />
-        <FormField
-          control={form.control}
-          name="description"
-          render={({ field }) => (
-            <FormItem>
-              <FormControl>
-                <Input placeholder="describe your task..." {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+          <FormField
+              control={form.control}
+              name="description"
+              render={({ field }) => (
+                  <FormItem>
+                      <FormControl>
+                          <Input
+                              placeholder="describe your task..."
+                              {...field}
+                              style={{ height: "8rem" }}
+                          />
+                      </ FormControl >
+                      <FormMessage />
+                  </FormItem>
+              )}
+          />
         <DialogClose>
           <Button type="submit">Create Issue</Button>
         </DialogClose>

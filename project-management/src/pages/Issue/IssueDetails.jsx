@@ -35,6 +35,10 @@ const IssueDetails = () => {
     dispatch(updateIssueStatus({ id: issueId, status: value }));
   };
 
+  // const handleUpdateIssue = (value) => {
+  //   dispatch(updateIssue{ id: issueId,}));
+  // };
+
   return (
     <div className="px-20 py-8 text-gray-400">
       <div className="flex justify-between border p-10 rounded-lg">

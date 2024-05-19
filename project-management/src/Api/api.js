@@ -1,6 +1,6 @@
 
 import axios from 'axios';
-const LOCALHOST='http://localhost:6464'
+const LOCALHOST='https://project-management-backend-na6x.onrender.com'
 
 export const API_BASE_URL = LOCALHOST
 

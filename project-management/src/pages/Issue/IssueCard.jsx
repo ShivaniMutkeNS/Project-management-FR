@@ -3,32 +3,40 @@ import {Button} from "@/components/ui/button";
 import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
 import {Avatar, AvatarFallback} from "@radix-ui/react-avatar";
 import {DotsVerticalIcon, PersonIcon} from "@radix-ui/react-icons";
-
+import { useEffect, useState } from "react"; // Import useState for managing local component state
+import { UpdateIssueForm } from './UpdateIssueDetails.jsx'; // Import the UpdateIssueForm component
 
 import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger,} from "@/components/ui/dropdown-menu";
 
 import UserList from "./UserList";
 import {useDispatch} from "react-redux";
-import {deleteIssue, fetchIssueById, updateIssueStatus} from "@/redux/Issue/Issue.action";
+import {deleteIssue, fetchIssueById, updateIssue, updateIssueStatus} from "@/redux/Issue/Issue.action";
 import {useNavigate, useParams} from "react-router-dom";
-import {useEffect} from "react";
+
 import {fetchComments} from "@/redux/Comment/comment.action.js";
+import {DialogContent, DialogHeader, DialogTitle} from "@/components/ui/dialog.jsx";
+import {CreateIssueForm} from "@/pages/Issue/CreateIssueForm.jsx";
+import {Dialog, DialogClose, DialogOverlay} from "@radix-ui/react-dialog";
 
 const IssueCard = ({item}) => {
     const dispatch = useDispatch();
     const {id} = useParams()
     const navigate = useNavigate();
-  //const { id } = item; // Destructure item.id directly
+    const [isEditing, setIsEditing] = useState(false); // State to manage the visibility of the edit form
+
+    //const { id } = item; // Destructure item.id directly
 
 
     const handleDelete = () => {
         dispatch(deleteIssue(item.id))
     }
+    const handleEdit = () => {
+        setIsEditing(true); // Set the isEditing state to true to display the edit form
+    };
 
-    const handleUpdateIssueStatus = (value) => {
-        dispatch(updateIssueStatus({id: item.id, status: value}));
-    }
-
+    const handleCloseEdit = () => {
+        setIsEditing(false); // Set the isEditing state to false to hide the edit form
+    };
     return (
         <Card className="rounded-md py-1 pb-2">
             <CardHeader className="py-0 pb-1">
@@ -48,11 +56,8 @@ const IssueCard = ({item}) => {
                             </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent>
-                            {/*<DropdownMenuItem onClick={() => handleUpdateIssueStatus("IN_PROGRESS")}>In*/}
-                            {/*    Progress</DropdownMenuItem>*/}
-                            {/*<DropdownMenuItem*/}
-                            {/*    onClick={() => handleUpdateIssueStatus("DEPLOYED")}>Done</DropdownMenuItem>*/}
-                            {/*<DropdownMenuItem>Edit</DropdownMenuItem>*/}
+                            <DropdownMenuItem onClick={handleEdit}>
+                                Edit</DropdownMenuItem> {/* Attach handleEdit to the Edit menu item */}
                             <DropdownMenuItem onClick={handleDelete}>Delete</DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>
@@ -84,6 +89,18 @@ const IssueCard = ({item}) => {
 
                 </div>
             </CardContent>
+            <Dialog open={isEditing} onOpenChange={setIsEditing}>
+                <DialogOverlay />
+                <DialogContent>
+                    <DialogHeader>
+                        <DialogTitle>Update Issue</DialogTitle>
+                    </DialogHeader>
+                    <UpdateIssueForm issueId={item.id} onClose={handleCloseEdit} />
+                    <DialogClose asChild>
+                        <Button onClick={handleCloseEdit}>Close</Button>
+                    </DialogClose>
+                </DialogContent>
+            </Dialog>
         </Card>
     );
 };
