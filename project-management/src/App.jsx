@@ -13,6 +13,8 @@ import AcceptInvitation from "./pages/Project/AcceptInvitation";
 import Subscription from "./pages/subscription/Subscription";
 import UpgradeSuccess from "./pages/subscription/UpgradeSuccess";
 import { getUserSubscription } from "./redux/Subscription/Action";
+import UpdatePasswordForm from "@/pages/Auth/PasswordResetToken/UpdatePasswordForm.jsx";
+import LoginForm from "@/pages/Auth/login/login.jsx";
 
 function App() {
   const dispatch = useDispatch();
@@ -23,32 +25,46 @@ function App() {
   }, [auth.jwt]);
 
   return (
-    <>
-      
-      {auth.loading?<Loader/> : auth.user ? (
-        <>
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<Home />}></Route>
-            <Route path="/project/:id" element={<ProjectDetails />}></Route>
-            <Route path="/project/update/:id" element={<UpdateProjectForm />}></Route>
+      <>
+        <Routes>
+          <Route
+              path="/reset-password"
+              element={<UpdatePasswordForm />}
+          />
             <Route
-              path="/project/:projectId/issue/:issueId"
-              element={<IssueDetails />}
-            ></Route>
-             <Route
-              path="/accept_invitation"
-              element={<AcceptInvitation />}
-            ></Route>
-            <Route path="/upgrade_plan" element={<Subscription />}></Route>
-            <Route path="/upgrade_plan/success" element={<UpgradeSuccess />}></Route>
-          </Routes>
-        </>
-      ) : (
-        <Auth />
-      )}
-    </>
+                path="/login"
+                element={<Auth />}
+            />
+          <Route
+              path="/"
+              element={
+                auth.loading ? (
+                    <Loader />
+                ) : auth.user ? (
+                    <>
+                      <Navbar />
+                      <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/project/:id" element={<ProjectDetails />} />
+                        <Route path="/project/update/:id" element={<UpdateProjectForm />} />
+                        <Route
+                            path="/project/:projectId/issue/:issueId"
+                            element={<IssueDetails />}
+                        />
+                        <Route path="/accept_invitation" element={<AcceptInvitation />} />
+                        <Route path="/upgrade_plan" element={<Subscription />} />
+                        <Route path="/upgrade_plan/success" element={<UpgradeSuccess />} />
+                      </Routes>
+                    </>
+                ) : (
+                    <Auth />
+                )
+              }
+          />
+        </Routes>
+      </>
   );
+
 }
 
 export default App;

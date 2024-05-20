@@ -9,7 +9,11 @@ import {
   GET_USER_REQUEST,
   GET_USER_SUCCESS,
   GET_USER_FAILURE,
-  LOGOUT
+  LOGOUT,
+  RESET_PASSWORD_REQUEST,
+  RESET_PASSWORD_SUCCESS,
+  RESET_PASSWORD_FAILURE,
+  UPDATE_PASSWORD_REQUEST, UPDATE_PASSWORD_SUCCESS, UPDATE_PASSWORD_FAILURE
 } from './ActionTypes';
 import { API_BASE_URL } from '@/Api/api';
 
@@ -36,6 +40,7 @@ export const register = userData => async dispatch => {
 const loginRequest = () => ({ type: LOGIN_REQUEST });
 const loginSuccess = user => ({ type: LOGIN_SUCCESS, payload: user });
 const loginFailure = error => ({ type: LOGIN_FAILURE, payload: error });
+const resetPassword = () => ({ type: RESET_PASSWORD });
 
 export const login = userData => async dispatch => {
   dispatch(loginRequest());
@@ -49,7 +54,38 @@ export const login = userData => async dispatch => {
     dispatch(loginFailure(error.message));
   }
 };
+// Reset Password action creators
+const resetPasswordRequest = () => ({ type: RESET_PASSWORD_REQUEST });
+const resetPasswordSuccess = () => ({ type: RESET_PASSWORD_SUCCESS });
+const resetPasswordFailure = error => ({ type: RESET_PASSWORD_FAILURE, payload: error });
 
+export const reset = userData => async dispatch => {
+  dispatch(resetPasswordRequest());
+  try {
+    const response = await axios.post(`${API_BASE_URL}/reset-password/reset?email=${userData.email}`);
+    console.log("Reset Password", response.data)
+    dispatch(resetPasswordSuccess());
+  } catch (error) {
+    dispatch(resetPasswordFailure(error.message));
+  }
+};
+
+
+const updatePasswordRequest = () => ({ type: UPDATE_PASSWORD_REQUEST });
+const updatePasswordSuccess = () => ({ type: UPDATE_PASSWORD_SUCCESS });
+const updatePasswordFailure = (error) => ({ type: UPDATE_PASSWORD_FAILURE, payload: error });
+
+export const updatePassword = (password, token) => async (dispatch) => {
+  dispatch(updatePasswordRequest());
+  try {
+    const response = await axios.post(`${API_BASE_URL}/reset-password`, { password, token });
+    console.log("Password updated successfully", response.data);
+    dispatch(updatePasswordSuccess());
+  } catch (error) {
+    console.error("Failed to update password", error);
+    dispatch(updatePasswordFailure(error.message));
+  }
+};
 
 
 //  get user from token

@@ -10,32 +10,29 @@ import {
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { useDispatch } from "react-redux";
-import { login } from "@/redux/Auth/Action";
+import {reset} from "@/redux/Auth/Action.js";
+import {useDispatch} from "react-redux";
 
 const formSchema = z.object({
     email: z.string().email('Invalid email address'),
-    password: z.string().min(8, 'Password must be at least 8 characters long'),
 });
 
-const LoginForm = ({ switchToPasswordResetForm }) => {
+const PasswordResetTokenForm = ({ switchToLoginForm }) => {
     const dispatch = useDispatch();
     const form = useForm({
         resolver: zodResolver(formSchema),
         defaultValues: {
             email: "",
-            password: "",
         },
     });
 
     const onSubmit = (data) => {
-        dispatch(login(data));
-        console.log("login form", data);
+        dispatch(reset(data));
     };
 
     return (
         <div className="space-y-5">
-            <h1 className="text-center font-xl font-bold text-black underline decoration-1">Login</h1>
+            <h1 className="text-center font-xl font-bold text-black underline decoration-1">Reset Password</h1>
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
                     <FormField
@@ -54,30 +51,10 @@ const LoginForm = ({ switchToPasswordResetForm }) => {
                             </FormItem>
                         )}
                     />
-                    <FormField
-                        control={form.control}
-                        name="password"
-                        render={({ field }) => (
-                            <FormItem>
-                                <FormControl>
-                                    <Input
-                                        {...field}
-                                        type="password"
-                                        className="border font-bold text-black w-full border-gray-700 py-5 px-5"
-                                        placeholder="Enter your password"
-                                    />
-                                </FormControl>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
                     <Button type="submit" className="w-full bg-slate-400 py-5">
-                        Login
+                        Send Reset Link
                     </Button>
                     <div className="flex items-center font-bold text-black justify-center">
-                        <Button variant="ghost" type="button" onClick={switchToPasswordResetForm}>
-                            Forget Password
-                        </Button>
                     </div>
                 </form>
             </Form>
@@ -85,4 +62,4 @@ const LoginForm = ({ switchToPasswordResetForm }) => {
     );
 };
 
-export default LoginForm;
+export default PasswordResetTokenForm;

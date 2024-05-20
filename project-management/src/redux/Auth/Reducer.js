@@ -13,6 +13,9 @@ import {
   GET_USER_SUCCESS,
   GET_USER_FAILURE,
   LOGOUT,
+  RESET_PASSWORD_REQUEST,
+  RESET_PASSWORD_SUCCESS,
+  RESET_PASSWORD_FAILURE,
 } from "./ActionTypes";
 
 const initialState = {
@@ -67,6 +70,16 @@ const authReducer = (state = initialState, action) => {
     case LOGOUT:
       localStorage.removeItem("jwt");
       return { ...state, jwt: null, user: null };
+    case RESET_PASSWORD_REQUEST:
+      return { ...state, loading: true, error: null };
+    case RESET_PASSWORD_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+    case RESET_PASSWORD_SUCCESS:
+      return { ...state, loading: false, error: null };
     default:
       return state;
   }
