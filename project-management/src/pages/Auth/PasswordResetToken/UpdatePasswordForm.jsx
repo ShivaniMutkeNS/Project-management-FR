@@ -1,31 +1,29 @@
-import React, {useEffect, useState} from 'react';
-import {useLocation} from 'react-router-dom';
-import {useDispatch} from 'react-redux';
-import {useForm} from 'react-hook-form';
-import {zodResolver} from '@hookform/resolvers/zod';
-import {z} from 'zod';
-import {reset, updatePassword} from '@/redux/Auth/Action';
-import {Input} from "@/components/ui/input";
-import {Button} from "@/components/ui/button";
-import { Routes, Route, useNavigate } from 'react-router-dom';
-import {Form, FormControl, FormField, FormItem, FormMessage,} from "@/components/ui/form";
-
+import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import { updatePassword } from '@/redux/Auth/Action';
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Form, FormControl, FormField, FormItem, FormMessage } from "@/components/ui/form";
 
 const formSchema = z.object({
     password: z.string().min(8, 'Password must be at least 8 characters long'),
-    confirmPassword: z.string().refine((data) => data.confirmPassword === data.password, {
-        message: 'Passwords do not match',
-    }),
+    confirmPassword: z.string().min(8, 'Confirm Password must be at least 8 characters long')
+}).refine(data => data.password === data.confirmPassword, {
+    message: 'Passwords do not match',
+    path: ['confirmPassword'], // Specify the field to which the error message should be applied
 });
 
 const UpdatePasswordForm = () => {
     const dispatch = useDispatch();
-    const location = useLocation(); // Access useLocation
+    const location = useLocation();
     const [token, setToken] = useState('');
-    const [backToLogin, setBackToLogin] = useState(false); // Track API call status
+    const [backToLogin, setBackToLogin] = useState(false);
     const navigate = useNavigate();
 
-    // Extracting token from URL parameters
     useEffect(() => {
         const searchParams = new URLSearchParams(location.search);
         const tokenParam = searchParams.get('token');
@@ -43,13 +41,12 @@ const UpdatePasswordForm = () => {
     });
 
     const onSubmit = (data) => {
-        dispatch(updatePassword({ password: data.password, token }))
+        dispatch(updatePassword( data.password,  token ))
             .then(() => {
                 setBackToLogin(true);
             })
             .catch((error) => {
                 console.error("Failed to reset password", error);
-                // Display an alert or handle the error appropriately here
                 alert("Failed to reset password: " + error.message);
             });
     };
@@ -63,17 +60,17 @@ const UpdatePasswordForm = () => {
             <div className="box h-[30rem] w-[25rem]">
                 <div className="minContainer login">
                     <div className="loginBox w-full px-10 space-y-5 font-xl font-bold text-black-900">
-
                         <div className="flex items-center justify-center font-xl font-bold text-black">
                             <div className="space-y-5">
-                                <h1 className="text-center font-xl font-bold text-black underline decoration-1">Reset
-                                    Password</h1>
+                                <h1 className="text-center font-xl font-bold text-black underline decoration-1">
+                                    Reset Password
+                                </h1>
                                 <Form {...form}>
                                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
                                         <FormField
                                             control={form.control}
                                             name="password"
-                                            render={({field}) => (
+                                            render={({ field }) => (
                                                 <FormItem>
                                                     <FormControl>
                                                         <Input
@@ -84,14 +81,14 @@ const UpdatePasswordForm = () => {
                                                             disabled={backToLogin}
                                                         />
                                                     </FormControl>
-                                                    <FormMessage/>
+                                                    <FormMessage />
                                                 </FormItem>
                                             )}
                                         />
                                         <FormField
                                             control={form.control}
                                             name="confirmPassword"
-                                            render={({field}) => (
+                                            render={({ field }) => (
                                                 <FormItem>
                                                     <FormControl>
                                                         <Input
@@ -102,7 +99,7 @@ const UpdatePasswordForm = () => {
                                                             disabled={backToLogin}
                                                         />
                                                     </FormControl>
-                                                    <FormMessage/>
+                                                    <FormMessage />
                                                 </FormItem>
                                             )}
                                         />
@@ -110,7 +107,7 @@ const UpdatePasswordForm = () => {
                                             <Button
                                                 type="submit"
                                                 className="w-full bg-black bg-opacity-70 text-white py-3"
-                                                disabled={backToLogin} // Disable button while backToLogin
+                                                disabled={backToLogin}
                                             >
                                                 Reset Password
                                             </Button>
@@ -120,10 +117,9 @@ const UpdatePasswordForm = () => {
                                                 className="w-full bg-black bg-opacity-70 text-white py-3"
                                                 onClick={handleLoginRedirect}
                                             >
-                                                Now you can login
+                                                Login
                                             </Button>
                                         </div>
-
                                     </form>
                                 </Form>
                             </div>

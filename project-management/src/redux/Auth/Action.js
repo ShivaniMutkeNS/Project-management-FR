@@ -90,9 +90,11 @@ export const updatePassword = (password, token) => async (dispatch) => {
     const response = await axios.post(`${API_BASE_URL}/reset-password`, { password, token });
     console.log("Password updated successfully", response.data);
     dispatch(updatePasswordSuccess());
+    return response;
   } catch (error) {
     console.error("Failed to update password", error);
     dispatch(updatePasswordFailure(error.message));
+    throw  error;
   }
 };
 
