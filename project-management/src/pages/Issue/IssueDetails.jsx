@@ -40,8 +40,11 @@ const IssueDetails = () => {
   // };
 
   return (
-    <div className="px-20 py-8 text-gray-400">
-      <div className="flex justify-between border p-10 rounded-lg">
+    <div className="px-20 py-8 text-gray-400"
+         style={{ backgroundImage: 'url("https://t3.ftcdn.net/jpg/04/72/54/68/360_F_472546867_4MBw9cVFYE7AwnrIIbmZ8xXS0V3mrIzr.jpg")', backgroundSize: 'cover', backgroundPosition: 'center' }}
+    >
+      <div className="flex justify-between border bg-black bg-opacity-70 p-10 rounded-lg"
+      >
         <ScrollArea className="h-[80vh] w-[60%] ">
           <div className="">
             <h1 className="text-lg font-semibold text-gray-400">
@@ -93,7 +96,7 @@ const IssueDetails = () => {
             </SelectContent>
           </Select>
 
-          <div className="border rounded-lg">
+          <div className="border rounded-lg ">
             <p className="border-b py-3 px-5">Details</p>
 
             <div className="p-5">

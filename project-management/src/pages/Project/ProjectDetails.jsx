@@ -30,7 +30,10 @@ const ProjectDetails = () => {
   return (
     <>
       {!project.loading ? (
-        <div className="mt-5 lg:px-10 ">
+        <div className=" lg:px-10 "
+            style={{ backgroundImage: 'url("https://t3.ftcdn.net/jpg/04/72/54/68/360_F_472546867_4MBw9cVFYE7AwnrIIbmZ8xXS0V3mrIzr.jpg")', backgroundSize: 'cover', backgroundPosition: 'center' }}
+
+        >
           <div className="lg:flex gap-5 justify-between pb-4">
             <ScrollArea className="h-screen lg:w-[69%] pr-2">
               <div className="text-gray-400 pb-10 w-full">

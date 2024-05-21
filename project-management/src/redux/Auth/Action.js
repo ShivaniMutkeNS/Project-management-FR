@@ -16,6 +16,7 @@ import {
   UPDATE_PASSWORD_REQUEST, UPDATE_PASSWORD_SUCCESS, UPDATE_PASSWORD_FAILURE
 } from './ActionTypes';
 import { API_BASE_URL } from '@/Api/api';
+import {useNavigate} from "react-router-dom";
 
 // Register action creators
 const registerRequest = () => ({ type: REGISTER_REQUEST });
@@ -30,6 +31,7 @@ export const register = userData => async dispatch => {
     if(user.jwt) localStorage.setItem("jwt",user.jwt)
     console.log("registerr success:- ",user)
     dispatch(registerSuccess(user));
+    return response;
   } catch (error) {
     console.log("error ",error)
     dispatch(registerFailure(error.message));
@@ -43,6 +45,7 @@ const loginFailure = error => ({ type: LOGIN_FAILURE, payload: error });
 const resetPassword = () => ({ type: RESET_PASSWORD });
 
 export const login = userData => async dispatch => {
+
   dispatch(loginRequest());
   try {
     const response = await axios.post(`${API_BASE_URL}/auth/signin`, userData);
@@ -50,8 +53,11 @@ export const login = userData => async dispatch => {
     if(user.jwt) localStorage.setItem("jwt",user.jwt)
     console.log("login success",user)
     dispatch(loginSuccess(user));
+    return response.data;
   } catch (error) {
+    console.error("Failed to login", error);
     dispatch(loginFailure(error.message));
+    throw error
   }
 };
 // Reset Password action creators
@@ -64,9 +70,12 @@ export const reset = userData => async dispatch => {
   try {
     const response = await axios.post(`${API_BASE_URL}/reset-password/reset?email=${userData.email}`);
     console.log("Reset Password", response.data)
+
     dispatch(resetPasswordSuccess());
+    return response;
   } catch (error) {
     dispatch(resetPasswordFailure(error.message));
+    throw error;
   }
 };
 

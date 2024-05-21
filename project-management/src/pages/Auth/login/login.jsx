@@ -1,25 +1,21 @@
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import {
-    Form,
-    FormControl,
-    FormField,
-    FormItem,
-    FormMessage,
-} from "@/components/ui/form";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { useDispatch } from "react-redux";
-import { login } from "@/redux/Auth/Action";
+import {Input} from "@/components/ui/input";
+import {Button} from "@/components/ui/button";
+import {Form, FormControl, FormField, FormItem, FormMessage,} from "@/components/ui/form";
+import {useForm} from "react-hook-form";
+import {zodResolver} from "@hookform/resolvers/zod";
+import {z} from "zod";
+import {useDispatch} from "react-redux";
+import {login} from "@/redux/Auth/Action";
+import {useNavigate} from "react-router-dom";
 
 const formSchema = z.object({
     email: z.string().email('Invalid email address'),
     password: z.string().min(8, 'Password must be at least 8 characters long'),
 });
 
-const LoginForm = ({ switchToPasswordResetForm }) => {
+const LoginForm = ({switchToPasswordResetForm}) => {
     const dispatch = useDispatch();
+    const navigate = useNavigate()
     const form = useForm({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -29,8 +25,16 @@ const LoginForm = ({ switchToPasswordResetForm }) => {
     });
 
     const onSubmit = (data) => {
-        dispatch(login(data));
-        console.log("login form", data);
+
+        dispatch(login(data))
+            .then(() => {
+            navigate("/")
+            console.log("login form", data);
+        }).catch((error) => {
+            console.error("failed to login", error);
+            alert("Failed to login: " + error.message);
+        })
+
     };
 
     return (
@@ -41,7 +45,7 @@ const LoginForm = ({ switchToPasswordResetForm }) => {
                     <FormField
                         control={form.control}
                         name="email"
-                        render={({ field }) => (
+                        render={({field}) => (
                             <FormItem>
                                 <FormControl>
                                     <Input
@@ -50,14 +54,14 @@ const LoginForm = ({ switchToPasswordResetForm }) => {
                                         placeholder="Enter your email"
                                     />
                                 </FormControl>
-                                <FormMessage />
+                                <FormMessage/>
                             </FormItem>
                         )}
                     />
                     <FormField
                         control={form.control}
                         name="password"
-                        render={({ field }) => (
+                        render={({field}) => (
                             <FormItem>
                                 <FormControl>
                                     <Input
@@ -67,7 +71,7 @@ const LoginForm = ({ switchToPasswordResetForm }) => {
                                         placeholder="Enter your password"
                                     />
                                 </FormControl>
-                                <FormMessage />
+                                <FormMessage/>
                             </FormItem>
                         )}
                     />

@@ -15,12 +15,15 @@ const AcceptInvitation = () => {
     console.log("token ", token);
     dipatch(acceptInvitation({invitationToken:token,navigate}));
   };
-  return <div className="h-[85vh] flex flex-col justify-center items-center">
-    <div className="flex flex-col items-center">
-      <h1 className="py-5 font-semibold text-xl">you are invited to join the project</h1>
+  return <div className="h-[105vh] flex flex-col justify-center items-center"
+              style={{ backgroundImage: 'url("https://t3.ftcdn.net/jpg/04/72/54/68/360_F_472546867_4MBw9cVFYE7AwnrIIbmZ8xXS0V3mrIzr.jpg")', backgroundSize: 'cover', backgroundPosition: 'center' }}
+  >
+    <div className="flex flex-col bg-black bg-opacity-70 items-center justify-center w-96 h-40 p-10">
+      <h1 className="py-5 font-semibold text-xl font-bold text-pink-500">you are invited to join the project</h1>
       <Button onClick={handleAcceptInvitation}>Accept Invitation</Button>
     </div>
-    
+
+
   </div>;
 };
 

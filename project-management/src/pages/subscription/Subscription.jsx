@@ -44,9 +44,12 @@ const Subscription = () => {
   }, []);
 
   return (
-    <div className="p-10 ">
+    <div className="p-12 "
+         style={{ backgroundImage: 'url("https://t3.ftcdn.net/jpg/04/72/54/68/360_F_472546867_4MBw9cVFYE7AwnrIIbmZ8xXS0V3mrIzr.jpg")', backgroundSize: 'cover', backgroundPosition: 'center' }}
+
+    >
       <h1 className="text-5xl font-semibold py-5 pb-16 text-center">Pricing</h1>
-      <div className="flex flex-col lg:flex-row justify-center items-center gap-9">
+      <div className="flex flex-col lg:flex-row justify-center items-center gap-9 bg-black bg-opacity-50">
         <SubscriptionCard
           data={{
             planName: "Free",

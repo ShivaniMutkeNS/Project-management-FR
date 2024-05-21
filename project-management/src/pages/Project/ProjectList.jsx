@@ -78,7 +78,10 @@ const ProjectList = () => {
   };
   return (
     <>
-      <div className="relative px-5 lg:px-0 lg:flex gap-5 justify-center py-5">
+      <div className="relative px-5 lg:px-0 lg:flex gap-5 justify-center py-5"
+           style={{ backgroundImage: 'url("https://t3.ftcdn.net/jpg/04/72/54/68/360_F_472546867_4MBw9cVFYE7AwnrIIbmZ8xXS0V3mrIzr.jpg")', backgroundSize: 'cover', backgroundPosition: 'center' }}
+
+      >
         <section className="hidden lg:block">
           <Card className="p-5 sticky top-10">
             <div className="flex justify-between lg:w-[20rem]">
@@ -91,7 +94,7 @@ const ProjectList = () => {
             <CardContent className="mt-5 ">
               <ScrollArea className="space-y-7 h-[70vh]">
                 <div>
-                  <h1 className="pb-3 text-gray-400 border-b">Category</h1>
+                  <h1 className="pb-3 text-black border-b">Category</h1>
                   <div className="pt-5">
                     <RadioGroup
                       onValueChange={(value) =>

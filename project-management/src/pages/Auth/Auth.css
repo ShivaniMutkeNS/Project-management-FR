@@ -9,7 +9,8 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: midnightblue;
+    background: url('https://t3.ftcdn.net/jpg/04/72/54/68/360_F_472546867_4MBw9cVFYE7AwnrIIbmZ8xXS0V3mrIzr.jpg') no-repeat center center; /* Set the image URL */
+    background-size: cover;
 }
 @property --a{
     syntax: '<angle>';
@@ -18,15 +19,15 @@
 }
 .box{
     position: relative;
-    
-    
+
     background: repeating-conic-gradient(from var(--a), yellow 0%, lightgoldenrodyellow 5%, transparent 5%, transparent 40%, lemonchiffon 50%);
     filter: drop-shadow(0 15px 50px #563d2d);
     border-radius: 20px;
-    animation: rotating 4s linear infinite;
+
     display: flex;
     justify-content: center;
     align-items: center;
+    animation: changeBorderColor 4s linear infinite;
 }
 @keyframes rotating {
     0%
@@ -39,16 +40,90 @@
     }
     
 }
- .box::before{
-    content:"";
-    position: absolue;
+@keyframes pulsing {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+@keyframes colorShift {
+    0% {
+        background: repeating-conic-gradient(from var(--a), #45f3ff 0%, #45f3ff 5%, transparent 5%, transparent 40%, #45f3ff 50%);
+    }
+    50% {
+        background: repeating-conic-gradient(from var(--a), #ff6347 0%, #ff6347 5%, transparent 5%, transparent 40%, #ff6347 50%);
+    }
+    100% {
+        background: repeating-conic-gradient(from var(--a), #45f3ff 0%, #45f3ff 5%, transparent 5%, transparent 40%, #45f3ff 50%);
+    }
+}
+@keyframes scaleRotate {
+    0% {
+        transform: scale(1) rotate(0deg);
+    }
+    50% {
+        transform: scale(1.2) rotate(180deg);
+    }
+    100% {
+        transform: scale(1) rotate(360deg);
+    }
+}
+@keyframes waving {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(10px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+@keyframes blinking {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+#backgroundVideo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: translate(-50%, -50%);
+    z-index: -1; /* Ensure the video is behind other content */
+}
+
+.box::before {
+    content: "";
+    position: absolute;
     width: 100%;
     height: 100%;
     background: repeating-conic-gradient(from var(--a), #45f3ff 0%, #45f3ff 5%, transparent 5%, transparent 40%, #45f3ff 50%);
     filter: drop-shadow(0 15px 50px black);
     border-radius: 20px;
-    animation: rotating 10s linear infinite;
-    animation-delay: -1s;
+    animation: changeBorderColor 4s linear infinite; /* Duration is 4s to change color every 2s */
+}
+@keyframes changeBorderColor {
+    0% {
+        border-color: red; /* Initial border color */
+    }
+    50% {
+        border-color: blue; /* Midway border color */
+    }
+    100% {
+        border-color: green; /* Final border color */
+    }
 }
 .box::after{
     content:"";
@@ -66,7 +141,8 @@
     align-items: center;
     flex-direction: column;
     border-radius: 10px;
-    background: navajowhite;
+    background: url('https://www.elmhurst.edu/wp-content/uploads/2018/12/5-skills-project-management-degree-elmhurst-college-infographic-thumb.jpg') no-repeat center center; /* Set the image URL */
+    background-size: cover;
     z-index: 1000;
     box-shadow: inset 0 0px 0px #563d2d;
     border-bottom: 2px solid rgb(255,255,255,0.5);

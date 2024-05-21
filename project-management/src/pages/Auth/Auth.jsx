@@ -23,6 +23,10 @@ const Auth = () => {
 
   return (
       <div className="loginContainer">
+        <video autoPlay muted loop id="backgroundVideo">
+          <source src={"vecteezy_empty-dark-room-modern-futuristic-sci-fi-background_7635216.mp4"} type="video/mp4"/>
+          Your browser does not support the video tag.
+        </video>
         <div className="box h-[30rem] w-[25rem]">
           <div className="minContainer login">
             <div className="loginBox w-full px-10 space-y-5 font-xl font-bold text-black-900">

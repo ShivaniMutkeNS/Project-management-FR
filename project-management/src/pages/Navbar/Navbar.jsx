@@ -30,7 +30,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="border-b py-4 px-5 flex items-center justify-between bg-black text-pink-400 font-bold text-3xl">
+    <div className="border-b py-4 px-5 flex items-center justify-between bg-black bg-opacity-70 text-pink-400 font-bold text-3xl">
       <div className="flex items-center gap-3">
         <p onClick={()=>navigate("/")} className="cursor-pointer">Project Managment</p>
         <Dialog>

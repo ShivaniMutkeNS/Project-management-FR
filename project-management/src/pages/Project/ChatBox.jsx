@@ -123,8 +123,8 @@ const ChatBox = () => {
 
   
   return (
-    <div className="sticky">
-      <div className="border rounded-lg">
+    <div className="sticky bg-black bg-opacity-50">
+      <div className="border rounded-lg ">
         <h1 className="border-b p-5">Chat Box</h1>
         <ScrollArea className="h-[32rem] w-full p-5 flex gap-3 flex-col">
           {/* <div>
@@ -145,7 +145,7 @@ const ChatBox = () => {
                   className={`space-y-2 py-2 px-5 border rounded-ss-2xl rounded-e-xl`}
                 >
                   <p>{item.sender?.fullName}</p>
-                  <p className="text-gray-300">{item.content}</p>
+                  <p className="text-white-900 font-bold">{item.content}</p>
                 </div>
               </div>
             ) : (
@@ -158,7 +158,7 @@ const ChatBox = () => {
                   className={`space-y-2 py-2 px-5 border rounded-se-2xl rounded-s-xl`}
                 >
                   <p>{item.sender?.fullName}</p>
-                  <p className="text-gray-300">{item.content}</p>
+                  <p className="text-white font-bold">{item.content}</p>
                 </div>
                 <Avatar>
                   <AvatarFallback>{item.sender.fullName[0]}</AvatarFallback>
@@ -172,7 +172,7 @@ const ChatBox = () => {
             value={message}
             onChange={handleMessageChange}
             placeholder="type message..."
-            className="py-7 border-t outline-none  focus:outline-none focus:ring-0 rounded-none border-b-0 border-x-0"
+            className="py-7 border-t outline-none  focus:outline-none text-white font-bold focus:ring-0 rounded-none border-b-0 border-x-0"
           />
           <Button
             onClick={handleSendMessage}

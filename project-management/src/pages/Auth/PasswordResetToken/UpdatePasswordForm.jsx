@@ -43,13 +43,14 @@ const UpdatePasswordForm = () => {
     });
 
     const onSubmit = (data) => {
-        dispatch(updatePassword({ password: data.password, token })) // Pass only the password field
+        dispatch(updatePassword({ password: data.password, token }))
             .then(() => {
-                // Redirect to login page after successful password reset
                 setBackToLogin(true);
             })
             .catch((error) => {
                 console.error("Failed to reset password", error);
+                // Display an alert or handle the error appropriately here
+                alert("Failed to reset password: " + error.message);
             });
     };
 
@@ -108,7 +109,7 @@ const UpdatePasswordForm = () => {
                                         <div className="space-x-5">
                                             <Button
                                                 type="submit"
-                                                className="w-full bg-black text-white py-3"
+                                                className="w-full bg-black bg-opacity-70 text-white py-3"
                                                 disabled={backToLogin} // Disable button while backToLogin
                                             >
                                                 Reset Password
@@ -116,8 +117,7 @@ const UpdatePasswordForm = () => {
                                         </div>
                                         <div className="space-x-5">
                                             <Button
-                                                className="w-full bg-black text-white py-3"
-                                                disabled={!backToLogin}
+                                                className="w-full bg-black bg-opacity-70 text-white py-3"
                                                 onClick={handleLoginRedirect}
                                             >
                                                 Now you can login

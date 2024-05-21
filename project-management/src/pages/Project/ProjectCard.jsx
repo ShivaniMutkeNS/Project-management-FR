@@ -16,7 +16,10 @@ const ProjectCard = ({item}) => {
     }
 
     return (
-        <Card className="p-5 w-full lg:max-w-3xl">
+        <Card className="p-5 w-full lg:max-w-3xl"
+              //style={{ backgroundImage: 'url("https://t3.ftcdn.net/jpg/04/72/54/68/360_F_472546867_4MBw9cVFYE7AwnrIIbmZ8xXS0V3mrIzr.jpg")', backgroundSize: 'cover', backgroundPosition: 'center' }}
+
+        >
             <div className="space-y-5">
                 <div className="space-y-2">
                     <div className="flex justify-between">
